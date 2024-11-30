@@ -1,0 +1,103 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: gray;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .App {
+    max-width: 600px;
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px #fff;
+    border-radius: 8px;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-field {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-field:focus {
+    border-color: #00bfff;
+    outline: none;
+  }
+  .rating {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rating label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    background-color: #00bfff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2a00b3;
+  }
+  
+
+  .reviews-list {
+    margin-top: 30px;
+  }
+  
+  .reviews-list h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .review-card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .review-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .review-card p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .stars {
+    font-size: 18px;
+    color: gold;
+  }
