@@ -28,11 +28,13 @@ function ViewAccounts() {
     const querySnapshot = await getDocs(q);  
 
     querySnapshot.forEach((doc) => {
+      
       array.push(doc.data())   
     });
 
     setDocuments(array)
     setIsLoading(false)
+   
   }
 
   useEffect(() => {     
@@ -60,14 +62,17 @@ function ViewAccounts() {
       return docId !== object.id;
     })
     setDocuments(newDocuments)
+    
   }
 
   const handleDepositChange = e => {
     setIsDepositAmount({ ...isDepositAmount, [e.target.name]: e.target.value })    
+    
   }
 
   const handleWithdrawChange = e => {
     setIsWithdrawAmount({ ...isWithdrawAmount, [e.target.name]: e.target.value })     
+   
   }
 
 
@@ -81,7 +86,7 @@ function ViewAccounts() {
     const { initialDeposit } = newDocument
 
     if (parseInt(depositAmount) < 0) {
-      toast.error('Amount is not in correct format!', {
+       toast.error('Amount is not in correct format!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -96,6 +101,7 @@ function ViewAccounts() {
     newDocument.initialDeposit = (parseInt(initialDeposit) + parseInt(depositAmount)).toString();
     newDocument.description = isDepositAmount.description;
 
+   
     let transactionData = {
       amount: depositAmount,
       description: newDocument.description,
@@ -110,13 +116,16 @@ function ViewAccounts() {
       }
     }
     try {
-      await setDoc(doc(firestore, "transactions", transactionData.id), transactionData)  
+      await setDoc(doc(firestore, "transactions", transactionData.id), transactionData)
+       
     } catch (err) {
       console.error(err)
     }
+
     let updatedArray = documents.filter(object => {
 
       if (docId === object.id) {
+       
         return newDocument
       }
       return object
@@ -137,13 +146,16 @@ function ViewAccounts() {
   }
 
   const handleWithdraw = async () => {
+
+
+    
     let newDocument = documents.find((object) => {  
       return docId == object.id;
     })
     const { withdrawAmount } = isWithdrawAmount 
     const { initialDeposit } = newDocument
     if (parseInt(withdrawAmount) < 0) {
-      toast.error('Amount is not in correct format!', {
+    toast.error('Amount is not in correct format!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -170,7 +182,8 @@ function ViewAccounts() {
 
     newDocument.initialDeposit = (parseInt(initialDeposit) - parseInt(withdrawAmount)).toString();
     newDocument.description = isWithdrawAmount.description;
-    let transactionData = {
+
+  let transactionData = {
       amount: withdrawAmount,
       description: newDocument.description,
       dateCreated: serverTimestamp(),
@@ -190,6 +203,10 @@ function ViewAccounts() {
     } catch (err) {
       console.error(err)
     }
+
+
+
+
     let updatedArray = documents.filter(object => {
 
       if (docId == object.id) {
@@ -202,6 +219,7 @@ function ViewAccounts() {
 
 
     console.log(withdrawAmount)
+   
     await setDoc(doc(firestore, "accounts", docId), newDocument);
     toast.success("Amount Withdrawn Successfuly!", {
       position: "top-right",
@@ -222,9 +240,10 @@ function ViewAccounts() {
           <div className="col">
             <div className="card my-5 md-5">
               <div className="card-body " style={{ overflow: "auto" }}>
+               
                 <div className="row ">
                   <div className="col text-start"><Link to="/dashboard" style={{ textDecoration: "none" }} className='btn-sm btn-danger text-white'><i className="fa-solid fa-arrow-left"></i> Dashboard</Link ></div>
-                  </div>
+                 </div>
                 <br />
                 <div className="row">
                   <div className="col text-center"><h5><i className="fa-solid fa-user me-1"></i>Accounts</h5></div>
@@ -243,7 +262,7 @@ function ViewAccounts() {
                         <p >
                           We don't have any Account yet!
                         </p>
-                        <Link to="/dashboard/createAccounts" style={{ textDecoration: "none" }} className='btn-sm text-center'>Create Account</Link>
+                        <Link to="/dashboard/createAccounts" style={{ textDecoration: "none" }} className='btn-sm btn-success  text-center'>Create Account</Link>
                       </div>
                       : <>
                         <Table id="customers">
@@ -262,23 +281,21 @@ function ViewAccounts() {
                               documents.map((doc, i) => {
                                 return <Tr key={i}>
                                   <Td>{doc.branchCode}</Td>
-                                  <Td>
+                                 <Td>
                                     <div onClick={() => handleClick(doc)} className="btn btn-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ textDecoration: "none" }}>
                                       {doc.accountNumber}
                                     </div>
                                   </Td>
-                                  <Td>{doc.fullName}</Td>
+<Td>{doc.fullName}</Td>
                                   <Td>{doc.date}</Td>
                                   <Td>Saving</Td>
                                   <Td>{doc.initialDeposit}</Td>
-                                 
-                                </Tr>
+                                 </Tr>
                               })
                             }
                           </Tbody>
                         </Table>
-                       
-                        <div className="modal fade mt-3 " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                       <div className="modal fade mt-3 " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div className="modal-dialog modal-dialog-scrollable">
                             <div className="modal-content">
                               <div className="modal-body p-1">
@@ -295,7 +312,7 @@ function ViewAccounts() {
                                       <button type="button" class="btn btn-sm btn-danger text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">
                                         <i className="fa-solid fa-trash"></i> Delete Account
                                       </button>
-                                        </div>
+                                      </div>
                                   </div>
                                   <div className="row mt-3">
                                     <div className="col">
@@ -353,16 +370,14 @@ function ViewAccounts() {
                                       <button className='btn btn-sm btn-primary' data-bs-toggle="modal" data-bs-target="#exampleModal3">
                                         <i class="fa-solid fa-angles-down"></i> Withdraw
                                       </button>
-                                      {/* <button className='btn-sm btn-success me-2'><i class="fa-solid fa-credit-card"></i> Deposit</button> */}
-                                      {/* <button className='btn-sm btn-primary'><i class="fa-solid fa-angles-down"></i> Withdraw</button> */}
-                                    </div>
+                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        {/* Deposit Model */}
+                       
                         <div class="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -405,7 +420,7 @@ function ViewAccounts() {
                             </div>
                           </div>
                         </div>
-                        {/* Withdraw Model */}
+                        
                         <div class="modal fade" id="exampleModal3" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -446,13 +461,12 @@ function ViewAccounts() {
                             </div>
                           </div>
                         </div>
-                        {/* Delete Confirmation Model */}
+                        
                         <div class="modal fade p-0" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" style={{ width: "360px", height: "300px" }}>
                             <div class="modal-content">
-                              {/* <div class="modal-header"> */}
+                             
 
-                              {/* </div> */}
                               <div class="modal-body">
                                 <div className="container my-4">
                                   <div className="row">

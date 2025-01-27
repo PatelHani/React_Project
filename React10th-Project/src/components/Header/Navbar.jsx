@@ -11,6 +11,7 @@ function Navbar() {
         
 
         signOut(auth).then(() => {
+           
             toast.success('User has been logged Out!', {
                 position: "bottom-left",
                 autoClose: 5000,
@@ -21,7 +22,9 @@ function Navbar() {
                 progress: undefined,
              });
             setIsAuthenticated(false)
+           
         }).catch((error) => {
+            
             toast.error(error.message, {
                 position: "bottom-left",
                 autoClose: 5000,
@@ -42,14 +45,14 @@ function Navbar() {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        
                         {!isAuthenticated
                         ?<Link type="button" class="btn btn-light ms-auto " to="/login">Login</Link>
                         :<div className='ms-auto'>
-                        <Link type="button" class="btn btn-light me-2" to="/dashboard">HOME</Link>
+                        <Link type="button" class="btn btn-light me-2" to="/dashboard">Dashboard</Link>
                         <button type="button" class="btn btn-danger text-white" onClick={handleClick}>Logout</button>   
                         </div>
                         }
+                    
                     </div>
                     
                 </div>

@@ -13,11 +13,9 @@ function AuthenticatedContextProvider(props) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsAuthenticated(true)
-       
         setUser(user)
       } else {
         setIsAuthenticated(false)
-       
       }
       setIsLoader(false)
     })

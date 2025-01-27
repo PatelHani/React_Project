@@ -24,8 +24,7 @@ function SideBar2({ rtl }) {
     const [menuCollapse, setMenuCollapse] = useState(false);
     const [handleToggleSidebar,setHandleTogglerSideBar] = useState(false)
     const [toggled, setToggled] = useState()
-    // alert(handleToggleSidebar);
-
+   
     const headerStyle = {
         padding: '20px',
         letterSpacing: "1px",
@@ -46,7 +45,7 @@ function SideBar2({ rtl }) {
                 rtl={rtl}
                 toggled={toggled}
                 handleToggleSidebar={handleToggleSidebar}
-                // breakPoint="lg sm md xsm"
+               
             >
                 <SidebarHeader style={headerStyle}>
                     <div className="logotext ">
@@ -72,32 +71,7 @@ function SideBar2({ rtl }) {
                             <Link to="/dashboard/viewAccounts">Accounts</Link>
                         </MenuItem>
                     </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem icon={<FaMoneyBillAlt />}>
-                            <Link to="/dashboard/viewTransactions">Transactions</Link>
-                        </MenuItem>
-                    </Menu>
-                    {/* <Menu iconShape="circle">
-                        <SubMenu title="Products" icon={<IoBagAddSharp />}  >
-                            <MenuItem>
-                                <Link to='/products/create' className="text-white">
-                                    Add Products
-                                </Link>
-                            </MenuItem>
-                            <MenuItem>
-                                <Link to='/products' className="text-white">Products list</Link>
-                            </MenuItem>
-                        </SubMenu>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <SubMenu title="Orders" icon={<MdAddShoppingCart />}  >
-                            <MenuItem>
-                                <Link to='/orderlist' className="text-white">
-                                    List Orders
-                                </Link>
-                            </MenuItem>
-                        </SubMenu>
-                    </Menu> */}
+                   
                 </SidebarContent>
             </ProSidebar>
         </div>

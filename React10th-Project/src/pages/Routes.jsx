@@ -8,18 +8,13 @@ import ForgotPassword from './Authentication/ForgotPassword';
 import NoPage from "./NoPage"
 import PrivateRoute from './important/PrivateRoute';
 import { AuthenticatedContext } from '../Redux/AuthenticatedContext';
-// import { useNavigate } from 'react-router-dom';
 
 function CustomRoutes() {
 
     const { isAuthenticated } = useContext(AuthenticatedContext);
-    // console.log(isAuthenticated)
-    // const Navigate = useNavigate();
 
     return (
         <BrowserRouter>
-            {/* <Header /> */}
-            {/* <main> */}
             <Routes>
                 <Route path='/' element={< Frontend />} />
                 <Route path='/login' element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />} />
@@ -28,9 +23,7 @@ function CustomRoutes() {
                 <Route path='/dashboard/*' element={<PrivateRoute Component={Dashboard} />} />
                 <Route path='*' element={<NoPage />} />
             </Routes>
-            {/* </main> */}
-            {/* <Footer /> */}
-
+         
         </BrowserRouter>
     )
 }

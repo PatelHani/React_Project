@@ -25,16 +25,11 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // console.log(state)
-
     const { email, password, confirmPassword } = state
     if (password === confirmPassword) {
       createUserWithEmailAndPassword(auth, email, password, confirmPassword)
-        .then((userCredential) => {
-          // Signed in 
+        .then((userCredential) => { 
           const user = userCredential.user;
-
-          // console.log("User Registered")
           toast.success('User has been Registered Successfuly!', {
             position: "bottom-left",
             autoClose: 5000,
@@ -44,11 +39,8 @@ function SignUp() {
             draggable: true,
             progress: undefined,
           });
-          // console.log(userCredential)
-          // console.log(user)
           setIsAuthenticated(true)
           Navigate("/dashboard/viewAccounts")
-          // ...
         })
         .catch((error) => {
           console.error(error)
@@ -81,11 +73,6 @@ function SignUp() {
       
     }
   }
-
-
-
-
-
   return (
     <div className='mvh-100 SignUpPage d-flex justify-content-center align-items-center'>
       <div className="container ">
@@ -104,7 +91,6 @@ function SignUp() {
                   <br />
                   <div class="input-group flex-nowrap">
                     <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" aria-label="email" name='email' required onChange={handleChange} />
-                    {/* <span class="input-group-text" id="addon-wrapping">@</span> */}
                   </div>
                   <label for="password" className="form-label">Password</label>
                   <div class="input-group flex-nowrap">
@@ -129,7 +115,6 @@ function SignUp() {
                 </form>
                 <div style={{ position: "relative" }} ><span className='OR'><i class="fa-solid fa-o"></i><i class="fa-solid fa-r"></i></span><hr /></div>
 
-                {/* //icons */}
                 <div className='text-center'>
                   Already a user? <span><Link to="/login" >Login</Link></span>
                 </div>

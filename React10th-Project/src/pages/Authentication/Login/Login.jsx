@@ -23,22 +23,15 @@ function Login() {
     setState({ ...state, [e.target.name]: e.target.value })
   }
   useEffect(() => {
-    // setUser(auth.currentUser)
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user)
         setUserId(user.uid)
-        // console.log(user.uid)
-        // ...
       } else {
-        // console.log("user is not signed in")
         setUser({})
-        // User is signed out
-        // ...
       }
     });
   }, [])
-  //loginUser
 
   const navigate = useNavigate()
   const handleSubmit = (e) => {
@@ -50,7 +43,6 @@ function Login() {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         console.log(user)
         console.log("User Loggedin successful")
@@ -67,11 +59,8 @@ function Login() {
         console.log(user)
         setIsAuthenticated(true);
         navigate("/dashboard")
-        // ...
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
         console.error(error)
         toast.error("password/email incorrect", {
           position: "bottom-left",
@@ -108,7 +97,7 @@ function Login() {
                   <br />
                   <div class="input-group flex-nowrap">
                     <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" aria-label="Email" name='email' required onChange={handleChange} />
-                    {/* <span class="input-group-text" id="addon-wrapping">@</span> */}
+                   
                   </div>
                   <label for="password" className="form-label">Password</label>
                   <div class="input-group flex-nowrap">
@@ -131,7 +120,6 @@ function Login() {
                   <div className="text-end">
                     <Link to="/forgotPassword">forgot Passsword?</Link>
                   </div>
-                  {/* <button type="submit" className="btn btn-danger text-center">Login</button> */}
                 </form>
                 <div style={{ position: "relative" }}><span className='OR text-center'><i class="fa-solid fa-o"></i><i class="fa-solid fa-r"></i></span><hr /></div>
                 <div className='text-center'>

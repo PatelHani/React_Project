@@ -29,11 +29,10 @@ function ForgotPassword() {
           progress: undefined,
         });
         navigate("/")
-        // ..
+        
       })
       .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;  
         toast.error(errorCode, {
           position: "bottom-left",
           autoClose: 5000,

@@ -1,5 +1,4 @@
 import React from 'react'
-// import Sidebar from './Sidebar'
 import SideBar2 from './SideBar2'
 function index() {
   return (

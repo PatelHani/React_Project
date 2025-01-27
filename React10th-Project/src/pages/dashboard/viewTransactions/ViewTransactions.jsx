@@ -8,7 +8,7 @@ import { Rings } from "react-loader-spinner";
 import { AuthenticatedContext } from '../../../Redux/AuthenticatedContext';
 
 function ViewTransactions() {
-  const [documents, setDocuments] = useState([])   //key line for understanding these basic Hooks
+  const [documents, setDocuments] = useState([])  
   const [isLoading, setIsLoading] = useState(true)    
   const { user } = useContext(AuthenticatedContext)
   const [docId, setDocId] = useState("")
@@ -30,33 +30,27 @@ function ViewTransactions() {
 
     const accountsRef = collection(firestore, "transactions");
     const q = query(accountsRef, where("createdBy.uid", "==", user.uid));
-    const querySnapshot = await getDocs(q);  // Note: Key line for Reading data
+    const querySnapshot = await getDocs(q);  
 
     querySnapshot.forEach((doc) => {
-      // console.log("doc", doc.data())
-      // array.push(doc.data())
-      // console.log(doc.data().createdBy.uid)
-        array.push(doc.data())   //Also must Note this line
+       array.push(doc.data())   
     });
-    // console.log("querysnapShot=>", querySnapshot)
-    // console.log(array)
+   
     setDocuments(array)
     setIsLoading(false)
-    // console.log(documents)
+    
   }
 
-  useEffect(() => {     //Note this point carefully also
+  useEffect(() => {     
     readDocs()
   }, [])
 
   useEffect(() => {
     documents.forEach((doc) => {
       if (doc.id === docId) {
-        // console.log(doc)
-        // console.log(docId)
+        
         setTransactionDetail(doc)
-        // console.log(transactionDetail)
-        // console.log(doc)
+        
         return
       }
     })
@@ -69,7 +63,7 @@ function ViewTransactions() {
           <div className="col">
             <div class="card my-5 ">
               <div class="card-body " style={{ overflow: "auto" }}>
-                {/* <div className="container"> */}
+                
                 <div className="row">
                   <div className="col text-start"><Link to="/dashboard" style={{ textDecoration: "none" }} className='btn-sm btn-danger text-white'><i class="fa-solid fa-arrow-left"></i> Dashboard</Link ></div>
                 </div>
@@ -200,16 +194,7 @@ function ViewTransactions() {
                                   <p>{transactionDetail.description}</p>
                                 </div>
                               </div>
-                              {/* <div className="row ">
-                                <div className="col text-end">
-                                  <button className='btn-sm btn-success me-2' data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                    <i class="fa-solid fa-credit-card"></i> Deposit
-                                  </button>
-                                  <button className='btn-sm btn-primary' data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                                    <i class="fa-solid fa-angles-down"></i> Withdraw
-                                  </button>
-                                </div>
-                              </div> */}
+                             
                             </div>
                           </div>
                         </div>
